@@ -23,14 +23,39 @@ setTimeout(() => {
 
 // 3a
 let time = 1;
-setInterval(() => {
+const clock = setInterval(() => {
     console.log(time);
     time++;
 }, 1000);
 
 // 3b
-const stopTime = time
 const stop = document.querySelector(`button`);
 stop.addEventListener(`click`, () => {
-    clearInterval(time);
+    clearInterval(clock);
 });
+
+// BONUS
+// 4
+const div3 = document.querySelector(`#countdown`);
+const p4 = document.createElement(`p`);
+p4.innerText = `2:00`;
+div3.append(p4);
+let startingSeconds = 120;
+
+setInterval(() => {
+    startingSeconds--;
+    const minutes = Math.floor(startingSeconds / 60);
+    const seconds = startingSeconds % 60;
+    // p4.innerText = `${minutes}:${seconds}`;
+
+    if (seconds < 10) {
+        p4.innerText = `${minutes}:0${seconds}`;
+    } else {
+        p4.innerText = `${minutes}:${seconds}`;
+    }
+
+    if (startingSeconds === 0){
+        p4.innerText = `TIME IS UP`;
+        clearInterval(countdown);
+    }
+}, 1000);
